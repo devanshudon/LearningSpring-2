@@ -34,4 +34,16 @@ public class JournalController {
     public void deleteJournal(@PathVariable ObjectId myid){
            journalService.delete(myid);
     }
+    @PutMapping("/id/{myid}")
+    public void updateJournal(@PathVariable ObjectId myid, @RequestBody Journal journal){
+        Journal Old = journalService.JournalById(myid).orElse(null);
+        if(journal.getName()==null ||journal.getName().equals("")){
+            journal.setName(Old.getName());
+        }
+        if(journal.getTitle()==null ||journal.getTitle().equals("")){
+            journal.setTitle(Old.getTitle());
+        }
+        journal.setDate(Old.getDate());
+        journalService.filldata(journal);
+    }
 }
