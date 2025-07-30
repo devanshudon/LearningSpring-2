@@ -17,7 +17,8 @@ public class JournalController {
 
     @GetMapping
     public List<Journal> getJournals(){
-        return journalService.getAll();
+        List<Journal> l=journalService.getAll();
+        return l;
     }
     @PostMapping
     public void addJournal(@RequestBody Journal journal){
